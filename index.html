@@ -7,30 +7,84 @@
 <style>
 body {background-color:#5BFF7B;}
 button {background-color:#F8FF73;}
-button { width: 250px; height: 65px; border-radius:10px; margin:1px;}
-a {font-size:35px;}
-a {text-decoration:none;}
-a {color:black;}
+button {width: 250px; height: 65px; border-radius:10px; margin:1px; font-size:35px;}
 h1 {color:#666666;}
 h3 {color:#666666;}
   textarea {width:400px; height:200px; border-radius:10px; font-size:18px;}
-  div {text-align: center; margin:30px; background-color:yellow; width:600px; height:300px; border-radius:20px;}
+  .jang {text-align: center; margin:30px; background-color:yellow; width:600px; height:300px; border-radius:20px;}
+  input {width:95%; height:40px; border-radius:10px; margin:10px; font-size:100%;}
 </style>
 </head>
 <body>
+  <div style="position: fixed; right: 20px; top: 20px; display: flex; gap: 10px;">  
+    <button style="width: 60px; height: 23px; background-color:#0063FF; font-size:95%;" onclick="document.body.style.backgroundColor='#212121'; document.body.style.color='white';">🌙</button>  
+    <button style="width: 60px; height: 23px; background-color:#0063FF; font-size:95%;" onclick="document.body.style.backgroundColor='#5BFF7B'; document.body.style.color='black'">☀️</button>  
+    </div>
 <h1>올인원 쇼핑</h1>
 <h2>여러가지 쇼핑앱을 한곳에서 이용할수있습니다.</h2>
-<button><a href="https://www.coupang.com">쿠팡</a></button>
-<button><a href="https://www.11st.co.kr">11번가</a></button>
-<button><a href="https://www.gmarket.co.kr">G마켓</a></button>
-<button><a href="https://shopping.naver.com">네이버 쇼핑</a></button>
-<button><a href="https://www.danawa.com">다나와</a></button>
-<button><a href="https://www.amazon.com">아마존</a></button>
-<button><a href="https://www.ebay.com">eBay</a></button>
-<button><a href="https://www.lotteon.com">롯데온</a></button>
-  <div>
+  <input type="search" id="query" placeholder="검색어를 입력하세요">
+<button onclick="search('coupang')">쿠팡</button>
+<button onclick="search('eleven')">11번가</button>
+<button onclick="search('gMarket')">G마켓</button>
+<button onclick="search('naver')">네이버 쇼핑</button>
+<button onclick="search('danawa')">다나와</button>
+<button onclick="search('amazon')">아마존</button>
+<button onclick="search('ebay')">eBay</button>
+<button onclick="search('lotteOn')">롯데온</button>
+  <div class="jang">
     <p style="font-size:30px;">장바구니 🛒</p>
   <textarea placeholder="구매하고싶은 상품을 쓰세요"></textarea>
   </div>
+  <script>
+function search(engine) {
+  const query = document.getElementById('query').value.trim();
+  let url = '';
+
+  switch (engine) {
+    case 'coupang':
+      url = query
+        ? `https://www.coupang.com/np/search?q=${encodeURIComponent(query)}`
+        : `https://www.coupang.com/`;
+      break;
+    case 'eleven':
+      url = query
+        ? `https://search.11st.co.kr/Search.tmall?method=getTotalSearchSeller&kwd=${encodeURIComponent(query)}`
+        : `https://www.11st.co.kr/`;
+      break;
+    case 'gMarket':
+      url = query
+        ? `https://browse.gmarket.co.kr/search?keyword=${encodeURIComponent(query)}`
+        : `https://www.gmarket.co.kr/`;
+      break;
+    case 'naver':
+      url = query
+        ? `https://search.shopping.naver.com/search/all?query=${encodeURIComponent(query)}`
+        : `https://shopping.naver.com/`;
+      break;
+    case 'danawa':
+      url = query
+        ? `https://search.danawa.com/dsearch.php?query=${encodeURIComponent(query)}`
+        : `https://www.danawa.com/`;
+      break;
+    case 'amazon':
+      url = query
+        ? `https://www.amazon.com/s?k=${encodeURIComponent(query)}`
+        : `https://www.amazon.com/`;
+      break;
+    case 'ebay':
+      url = query
+        ? `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query)}`
+        : `https://www.ebay.com/`;
+      break;
+    case 'lotteOn':
+      url = query
+        ? `https://www.lotteon.com/search/search/search.ecn?render=search&platform=pc&q=${encodeURIComponent(query)}`
+        : `https://www.lotteon.com/`;
+      break;
+  }
+
+  window.open(url, '_blank');
+}
+  </script>
 </body>
 </html>
