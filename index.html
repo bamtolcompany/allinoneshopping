@@ -62,7 +62,7 @@ function search(engine) {
       break;
     case 'naver':
       url = query
-        ? `https://search.shopping.naver.com/search/all?query=${encodeURIComponent(query)}`
+        ? `https://search.shopping.naver.com/ns/search?query=${encodeURIComponent(query)}`
         : `https://shopping.naver.com/`;
       break;
     case 'danawa':
